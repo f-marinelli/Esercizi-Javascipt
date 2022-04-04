@@ -1,0 +1,45 @@
+<html>
+  <body>
+    <div id="container">
+      <h2>Person's Form</h2>
+      <form id="person-form">
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+<script>
+  (initForm = () => {
+    const createLabel = (text) => {
+      const label = document.createElement('label');
+      label.innerText = text;
+      return label;
+    };
+
+    const createInput = (type, name, text) => {
+      const input = document.createElement('input');
+      input.type = type;
+      input.name = name;
+      const label = createLabel(text);
+      form.prepend(input);
+      form.prepend(label);
+    };
+
+    const form = document.getElementById('person-form');
+
+    createInput('number', 'age', ' Age:');
+    createInput('text', 'last-name', ' Last Name:');
+    createInput('text', 'firstName', ' First Name:');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const person = {
+        [this[0].name]: this[0].value,
+        [this[1].name]: this[1].value,
+        [this[2].name]: this[2].value,
+      };
+      console.log(person);
+    });
+  })();
+</script>
